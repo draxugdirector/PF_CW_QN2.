@@ -1,0 +1,57 @@
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+void printDivisors(int n) {
+    std::vector<int> divisors;
+
+
+    for (int i = 1; i <= n; ++i) {
+        if (n % i == 0) {
+            divisors.push_back(i);
+        }
+    }
+
+    // decreasing order
+    std::sort(divisors.rbegin(), divisors.rend());
+
+    // Printing divisors
+    std::cout << "Divisors of " << n << ":\n";
+    for (int divisor : divisors) {
+        std::cout << divisor << std::endl;
+    }
+}
+
+int main() {
+    int number;
+    char choice;
+
+    std::cout << "This program will print all the divisors of a positive integer in decreasing order.\n";
+    std::cout <<"To terminate the program, enter a non-positive number( enter 0 or a negative number to quit).\n";
+
+    do {
+        std::cout << "Please enter a positive integer : ";
+        std::cin >> number;
+
+        if (number <= 0) {
+            std::cout <<number<< " "  "is not a positive integer.\n";
+
+
+        }
+
+        printDivisors(number);
+
+        std::cout << "Would you like to see the divisor of another integer (Y/N)?: ";
+        std::cin >> choice;
+
+        // Ensure valid input
+        while (choice != 'y' && choice != 'n' ) {
+            std::cout << "Invalid input. Please respond with 'y' for yes and 'n' for no: ";
+            std::cin >> choice;
+        }
+
+    } while (choice == 'y');
+
+    return 0;
+}
